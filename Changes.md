@@ -2,7 +2,12 @@
 
 [Sidekiq Changes](https://github.com/sidekiq/sidekiq/blob/main/Changes.md) | [Sidekiq Pro Changes](https://github.com/sidekiq/sidekiq/blob/main/Pro-Changes.md) | [Sidekiq Enterprise Changes](https://github.com/sidekiq/sidekiq/blob/main/Ent-Changes.md)
 
-HEAD
+7.3.4
+----------
+
+- Fix FrozenError when starting Sidekiq [#6470]
+
+7.3.3
 ----------
 
 - Freeze global configuration once boot is complete, to avoid configuration race conditions [#6466, #6465]
@@ -11,9 +16,10 @@ HEAD
 ```ruby
 def on_stop
   p arguments # => `[123, "string", {"key" => "value"}]`
+  id, str, hash = arguments
 end
 ```
-- IterableJobs can be cancelled via `Sidekiq::Client#cancel!`:
+- Iterable jobs can be cancelled via `Sidekiq::Client#cancel!`:
 ```ruby
 c = Sidekiq::Client.new
 jid = c.push("class" => SomeJob, "args" => [123])
@@ -29,7 +35,7 @@ c.cancel!(jid) # => true
 
 - Adjust ActiveRecord batch iteration to restart an interrupted batch from the beginning.
   Each batch should be processed as a single transaction in order to be idempotent. [#6405]
-- Fix typo in S::DeadSet#kill [#6397]
+- Fix typo in Sidekiq::DeadSet#kill [#6397]
 - Fix CSS issue with bottom bar in Web UI [#6414]
 
 7.3.1
