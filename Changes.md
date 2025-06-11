@@ -2,6 +2,15 @@
 
 [Sidekiq Changes](https://github.com/sidekiq/sidekiq/blob/main/Changes.md) | [Sidekiq Pro Changes](https://github.com/sidekiq/sidekiq/blob/main/Pro-Changes.md) | [Sidekiq Enterprise Changes](https://github.com/sidekiq/sidekiq/blob/main/Ent-Changes.md)
 
+8.0.5
+----------
+
+- Add `stopping?` method to AJ adapter for compatibility with the new AJ::Continuations feature [#6732]
+- Further improvements to Rails boot compatibility [#6710]
+- Add ability to disable CSRF middleware. SameSite cookies prevent
+  CSRF in a cleaner manner and are default in most browsers now.
+  CSRF code will be removed in Sidekiq 9.0. [#6739]
+
 8.0.4
 ----------
 
